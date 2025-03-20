@@ -36,38 +36,38 @@ AddType image/svg+xml .svg
     </FilesMatch>
 </IfModule>
 
-<ifModule mod_expires.c>
-    ExpiresActive On
-    #по умолчанию кэш в 5 секунд
-    ExpiresDefault "access plus 5 seconds"
-    #кэшировать флэш и изображения на месяц
-    ExpiresByType image/x-icon "access plus 2592000 seconds"
-    ExpiresByType image/jpeg "access plus 2592000 seconds"
-    ExpiresByType image/png "access plus 2592000 seconds"
-    ExpiresByType image/gif "access plus 2592000 seconds"
-    ExpiresByType application/x-shockwave-flash "access plus 2592000 seconds"
-    #кэшировать css, javascript и текстовые файлы на одну неделю
-    ExpiresByType text/css "access plus 604800 seconds"
-    ExpiresByType text/javascript "access plus 604800 seconds"
-    ExpiresByType application/javascript "access plus 604800 seconds"
-    ExpiresByType application/x-javascript "access plus 604800 seconds"
-    #кэшировать html и htm файлы на один день
-    ExpiresByType text/html "access plus 43200 seconds"
-    #кэшировать xml файлы на десять минут
-    ExpiresByType application/xhtml+xml "access plus 600 seconds"
-    #кэшировать шрифты на месяц
-    ExpiresByType application/vnd.ms-fontobject "access plus 2592000 seconds"
-    ExpiresByType application/x-font-ttf "access plus 2592000 seconds"
-    ExpiresByType application/x-font-opentype "access plus 2592000 seconds"
-    ExpiresByType application/x-font-woff "access plus 2592000 seconds"
-    ExpiresByType application/x-font-woff2 "access plus 2592000 seconds"
-    ExpiresByType image/svg+xml "access plus 2592000 seconds"
-
-</ifModule>
- 
- 
-### Удалить заголовок ETag (иначе есть проблемы с кешированием при включенном сжатии)
-<IfModule mod_headers.c>
-    Header unset ETag
+# BEGIN LBCWpFastestCache
+<FilesMatch "\.(webm|ogg|mp4|ico|pdf|flv|jpg|jpeg|png|gif|webp|js|css|swf|x-html|css|xml|js|woff|woff2|otf|ttf|svg|eot)(\.gz)?$">
+<IfModule mod_expires.c>
+AddType application/font-woff2 .woff2
+AddType application/x-font-opentype .otf
+ExpiresActive On
+ExpiresDefault A0
+ExpiresByType video/webm "access plus 1 year"
+ExpiresByType video/ogg "access plus 1 year"
+ExpiresByType video/mp4 "access plus 1 year"
+ExpiresByType image/webp "access plus 1 year"
+ExpiresByType image/gif "access plus 1 year"
+ExpiresByType image/png "access plus 1 year"
+ExpiresByType image/jpg "access plus 1 year"
+ExpiresByType image/jpeg "access plus 1 year"
+ExpiresByType image/ico "access plus 1 year"
+ExpiresByType image/svg+xml "access plus 1 year"
+ExpiresByType image/webp "access plus 1 year"
+ExpiresByType text/css "access plus 1 year"
+ExpiresByType text/javascript "access plus 1 year"
+ExpiresByType application/javascript "access plus 1 year"
+ExpiresByType application/x-javascript "access plus 1 year"
+ExpiresByType application/font-woff2 "access plus 1 year"
+ExpiresByType application/x-font-opentype "access plus 1 year"
+ExpiresByType application/x-font-truetype "access plus 1 year"
+ExpiresByType application/pdf       "access plus 1 year"
 </IfModule>
+<IfModule mod_headers.c>
+Header set Expires "max-age=A10368000, public"
+Header unset ETag
+Header set Connection keep-alive
 FileETag None
+</IfModule>
+</FilesMatch>
+# END LBCWpFastestCache
