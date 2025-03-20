@@ -28,12 +28,9 @@ self.addEventListener("install", (event) => {
         "/vodka-kaz.online/cache/web-app-manifest-192x192-min.webp",
       ];
 
-      return Promise.all(
-        urlsToCache.map((url) =>
-          cache.add(url).catch((err) => console.warn(`⚠️ Не удалось закешировать ${url}:`, err))
-        )
-      ).then(() => console.log("✅ Статические файлы закешированы"))
-       .catch((error) => console.error("❌ Ошибка кеширования:", error));
+      return cache.addAll(urlsToCache)
+        .then(() => console.log("✅ Static file cache"))
+        .catch((error) => console.error("❌ Error cache:", error));
     })
   );
 });
@@ -43,7 +40,7 @@ self.addEventListener("fetch", (event) => {
     caches.open("vodka-cache").then((cache) => {
       return cache.match(event.request).then((cachedResponse) => {
         if (cachedResponse) {
-          console.log("✅ Загружено из кеша:", event.request.url);
+          console.log("✅ Download cache:", event.request.url);
           return cachedResponse;
         }
         return fetch(event.request).then((response) => {
@@ -52,8 +49,8 @@ self.addEventListener("fetch", (event) => {
           }
           return response;
         }).catch((err) => {
-          console.error("❌ Ошибка загрузки из сети:", err);
-          return new Response(null, { status: 500, statusText: "Ошибка сети" });
+          console.error("❌ Error online:", err);
+          return new Response(null, { status: 500, statusText: "Error online" });
         });
       });
     })
