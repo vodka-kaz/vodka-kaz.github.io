@@ -23,6 +23,7 @@ self.addEventListener("install", (event) => {
         "/vodka-kaz.online/cashe/favicon-64x64-min.webp",
         "/vodka-kaz.online/cashe/favicon-96x96-min.webp",
         "/vodka-kaz.online/cashe/favicon-min.svg",
+        "/vodka-kaz.online/cashe/favicon-min.ico",
         "/vodka-kaz.online/cashe/vodka-casino-min.webp",
         "/vodka-kaz.online/cashe/web-app-manifest-192x192-min.webp",
       ];
