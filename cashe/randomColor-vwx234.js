@@ -1,0 +1,1 @@
+function getRandomColor(){const e=["red","blue","green","yellow","purple","orange"];return e[Math.floor(Math.random()*e.length)]}

