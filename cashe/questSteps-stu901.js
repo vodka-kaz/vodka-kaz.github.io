@@ -1,1 +1,0 @@
-function nextStep(e){document.querySelector(".quest-step.active").classList.remove("active"),document.getElementById(`step-${e}`).classList.add("active")}
