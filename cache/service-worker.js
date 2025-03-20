@@ -5,6 +5,7 @@ const urlsToCache = [
   "/cache/styles-bcd890.css",
   "/cache/styles2-efg012.css",
   "/cache/font-ghi789.css",
+  "/cache/styles.amp-min.css",
   "/cache/amp-abc123.js",
   "/cache/eventListeners-def456.js",
   "/cache/menuToggle-jkl012.js",
