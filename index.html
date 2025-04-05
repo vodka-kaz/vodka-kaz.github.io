@@ -14,6 +14,48 @@
     <link rel="icon" href="image/favicon.ico" type="image/x-icon">
     <link rel="icon" href="image/favicon.svg" type="image/svg+xml">
     <title>Vodka-Casino</title>
+    <style>
+        footer {
+            background-color: #111;
+            color: #fff;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .map-container {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 */
+            margin: 30px auto;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .footer-content {
+            margin-top: 30px;
+        }
+
+        .footer-content a {
+            color: #bbb;
+            text-decoration: none;
+        }
+
+        .footer-content a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -22,6 +64,7 @@
             <img src="image/vodka-casino.svg" alt="Логотип Vodka Casino" class="logo-image">
         </div>
     </header>
+
     <div class="nav-container">
         <button class="nav-btn" data-target="vodka">Главная</button>
         <button class="nav-btn" data-target="vodka-casino">Бонусы</button>
@@ -30,20 +73,16 @@
         <button class="nav-btn" data-target="водка-казино">Контакты</button>
         <button class="nav-btn" data-target="казино-водка">Отзывы</button>
     </div>
+
     <div class="screens">
         <div class="screen active" id="vodka">
             <div class="list">
                 <h1>Привет, это Vodka Casino!</h1>
                 <p>Вы стоите перед входом в легендарное казино, где сбываются мечты.</p>
                 <button class="vodka-voity" onclick="nextStep(2)">Взять промо</button>
-							<footer>
-  <div class="map-container">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4498.734577890959!2d37.4186802!3d55.6826019!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54d84e6f24363%3A0xbea546cd056a5e42!2svodka%20casino!5e0!3m2!1sen!2sru!4v1743873310342!5m2!1sen!2sru"
-      allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-  </div>
-</footer>
             </div>
         </div>
+
         <div class="screen" id="vodka-casino">
             <div class="list">
                 <h1>Щедрые бонусы и акции</h1>
@@ -66,24 +105,28 @@
                 </table>
             </div>
         </div>
+
         <div class="screen" id="casino-vodka">
             <div class="list">
                 <h1>Лучшие игры</h1>
                 <p>Наше казино сотрудничает с лучшими мировыми производителями игрового софта.</p>
             </div>
         </div>
+
         <div class="screen" id="vodka-bet">
             <div class="list">
                 <h1>Надежная партнерская программа</h1>
                 <p>Присоединяйся к нашей партнерской программе и получай вознаграждение за привлечение новых игроков.</p>
             </div>
         </div>
+
         <div class="screen" id="водка-казино">
             <div class="list">
                 <h1>Контакты</h1>
                 <p>Мы заботимся о безопасности ваших данных и финансов.</p>
             </div>
         </div>
+
         <div class="screen" id="казино-водка">
             <div class="list">
                 <h1>Отзывы наших игроков</h1>
@@ -91,13 +134,22 @@
             </div>
         </div>
     </div>
+
+    <!-- Карта и нижний футер -->
     <footer>
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4498.734577890959!2d37.4186802!3d55.6826019!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54d84e6f24363%3A0xbea546cd056a5e42!2svodka%20casino!5e0!3m2!1sen!2sru!4v1743873310342!5m2!1sen!2sru"
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
         <div class="footer-content">
             <p>© 2025 Vodka Casino. Все права защищены.</p>
             <p>Оператор: Mamba Edge B.V., лицензия № OGL/2024/976/0894.</p>
             <p><a href="/terms">Условия использования</a> | <a href="/privacy">Политика конфиденциальности</a></p>
         </div>
     </footer>
+
+    <!-- Скрипты -->
     <script src="vodka.js" defer></script>
     <script src="eventListeners.js" defer></script>
     <script src="promo-code.js" defer></script>
@@ -106,8 +158,11 @@
     <script src="questSteps.js" defer></script>
     <script>
         if ("serviceWorker" in navigator) {
-            navigator.serviceWorker.register("/cache/service-worker.js").then(() => console.log("✅ Service Worker зарегистрирован")).catch((error) => console.error("❌ Ошибка SW:", error));
+            navigator.serviceWorker.register("/cache/service-worker.js")
+                .then(() => console.log("✅ Service Worker зарегистрирован"))
+                .catch((error) => console.error("❌ Ошибка SW:", error));
         }
+
         function updateDate() {
             const dateBlock = document.querySelector(".data-block");
             if (dateBlock) {
