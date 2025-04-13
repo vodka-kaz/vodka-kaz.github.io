@@ -1,21 +1,16 @@
 <ifModule mod_headers.c>
-    # Кэшировать html и htm файлы на 1 день
     <FilesMatch "\.(html|htm)$">
-        Header set Cache-Control "max-age=86400"
+        Header set Cache-Control "max-age=31536000"
     </FilesMatch>
-    # Кэшировать css, javascript и текстовые файлы на 1 год
     <FilesMatch "\.(js|css|txt)$">
         Header set Cache-Control "max-age=31536000"
     </FilesMatch>
-    # Кэшировать изображения и флэш на 1 год
     <FilesMatch "\.(flv|swf|ico|gif|jpg|jpeg|png)$">
         Header set Cache-Control "max-age=31536000"
     </FilesMatch>
-    # Кэшировать шрифты на 1 год
     <FilesMatch "\.(ttf|woff|woff2|woff|otf|svg|eot)$">
         Header set Cache-Control "max-age=31536000"
     </FilesMatch>
-    # Отключить кэширование для скриптов
     <FilesMatch "\.(pl|php|cgi|spl|scgi|fcgi)$">
         Header unset Cache-Control
     </FilesMatch>
@@ -23,24 +18,18 @@
 
 <ifModule mod_expires.c>
     ExpiresActive On
-    # По умолчанию кэш в 5 секунд
-    ExpiresDefault "access plus 5 seconds"
-    # Кэшировать изображения и флэш на 1 год
+    ExpiresDefault "access plus 31536000 seconds"
     ExpiresByType image/x-icon "access plus 31536000 seconds"
     ExpiresByType image/jpeg "access plus 31536000 seconds"
     ExpiresByType image/png "access plus 31536000 seconds"
     ExpiresByType image/gif "access plus 31536000 seconds"
     ExpiresByType application/x-shockwave-flash "access plus 31536000 seconds"
-    # Кэшировать css, javascript и текстовые файлы на 1 год
     ExpiresByType text/css "access plus 31536000 seconds"
     ExpiresByType text/javascript "access plus 31536000 seconds"
     ExpiresByType application/javascript "access plus 31536000 seconds"
     ExpiresByType application/x-javascript "access plus 31536000 seconds"
-    # Кэшировать html и htm файлы на 1 день
-    ExpiresByType text/html "access plus 86400 seconds"
-    # Кэшировать xml файлы на 10 минут
-    ExpiresByType application/xhtml+xml "access plus 600 seconds"
-    # Кэшировать шрифты на 1 год
+    ExpiresByType text/html "access plus 31536000 seconds"
+    ExpiresByType application/xhtml+xml "access plus 31536000 seconds"
     ExpiresByType application/vnd.ms-fontobject "access plus 31536000 seconds"
     ExpiresByType application/x-font-ttf "access plus 31536000 seconds"
     ExpiresByType application/x-font-opentype "access plus 31536000 seconds"
